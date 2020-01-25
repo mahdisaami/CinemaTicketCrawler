@@ -7,3 +7,5 @@ from models.movie import Movie
 class CinemaMovie(BaseModel):
     cinema = ForeignKeyField(Cinema, backref='movies')
     movie = ForeignKeyField(Movie, backref='cinemas')
+
+

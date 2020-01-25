@@ -1,2 +1,4 @@
+beautifulsoup4
+requests
 mysqlclient==1.4.6
 peewee==3.13.1
