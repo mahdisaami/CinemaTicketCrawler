@@ -3,10 +3,12 @@ from models.base import BaseModel
 
 
 class Movie(BaseModel):
-    name = CharField(max_length=60)
-    type_movie = CharField(max_length=60)
+    name = CharField()
+    type_movie = CharField()
     time_movie = CharField()
     rate = SmallIntegerField()
     vote_numbers = SmallIntegerField()
     date_start = DateField()
-    director = CharField(max_length=60)
+    director = CharField()
+    actors = CharField()
+

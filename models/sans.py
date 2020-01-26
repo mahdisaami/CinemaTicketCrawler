@@ -5,7 +5,7 @@ from models.base import BaseModel
 
 
 class Sans(BaseModel):
-    name_saloon = CharField(max_length=32)
+    name_saloon = CharField()
     price = SmallIntegerField()
     time = TimeField()
     is_available = BooleanField()

@@ -11,13 +11,12 @@ def crawl_site(url):
         links = parse_html(response.text)
         for link in links:
             crawl_page(link)
+            print("one page crawl")
 
 
 def crawl_page(url):
     response = requests.get(url)
-    crawl = True
-    while crawl:
-        store_data(response)
+    store_data(response)
 
 
 if __name__ == "__main__":

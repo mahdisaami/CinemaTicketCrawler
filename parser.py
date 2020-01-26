@@ -1,5 +1,3 @@
-from distutils.filelist import _find_all_simple
-
 from bs4 import BeautifulSoup
 
 
@@ -27,7 +25,7 @@ def parse_page(data):
     soup = BeautifulSoup(data)
     movie_data = dict(name=None, type_movie=None, time_movie=None,
                       rate=None, vote_numbers=None,
-                      date_start=None, director=None
+                      date_start=None, director=None, actors=None
                       )
     title_tag = soup.title
     if title_tag is not None:
@@ -81,6 +79,14 @@ def parse_page(data):
     if director is not None:
         movie_data["director"] = director.text
 
+    actors = soup.select_one("body > section > section.movie-page.mtop > "
+                             "section > div > div > section > div > "
+                             "section.movie-wrap_section > div > "
+                             "div.col--small-12.col--medium-4.movie-wrap_col "
+                             "> figure:nth-child(1) > p")
+    if actors is not None:
+        movie_data["actors"] = actors.text
+
     cinemas_tag = soup.find_all("tr")
     cinemas_list = list()
     for cinema in cinemas_tag:
@@ -91,17 +97,11 @@ def parse_page(data):
 
 def extract_cinema(data):
     name_address = dict(name=None, address=None)
-    title_tag = data.select_one("#ctl00_dlcinemaonline > tbody > "
-                                "tr:nth-child(1) > td > div > "
-                                "div.showtime--items_step-header > "
-                                "div.clear.name > div.figure-contain > div")
-    if title_tag is not None:
-        name_address['name'] = title_tag.text
+    title_cinema = data.find("div", "movie__title")
+    if title_cinema is not None:
+        name_address['name'] = title_cinema.text
 
-    address_tag = data.select_one("#ctl00_dlcinemaonline > tbody > "
-                                  "tr:nth-child(1) > td > div > "
-                                  "div.showtime--items_step-header > "
-                                  "div.clear.name > div.figure-contain > p")
+    address_tag = data.p
     if address_tag is not None:
         name_address["address"] = address_tag.text
     return name_address
