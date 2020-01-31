@@ -1,11 +1,13 @@
-from peewee import CharField, SmallIntegerField, TimeField, \
-    BooleanField
+from peewee import CharField, TimeField, \
+    BooleanField, DateField
 
 from models.base import BaseModel
 
 
 class Sans(BaseModel):
-    name_saloon = CharField()
-    price = SmallIntegerField()
-    time = TimeField()
-    is_available = BooleanField()
+    date = DateField(null=True)
+    name_saloon = CharField(null=True)
+    price = CharField(null=True)
+    time = TimeField(null=True)
+    is_available = BooleanField(null=True)
+    url = CharField(null=True)

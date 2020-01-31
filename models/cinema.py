@@ -4,4 +4,4 @@ from models.base import BaseModel
 
 class Cinema(BaseModel):
     name = CharField()
-    address = TextField()
+    address = TextField() 
