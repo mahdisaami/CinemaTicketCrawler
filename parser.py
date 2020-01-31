@@ -14,8 +14,9 @@ def parse_html(data):
         response = requests.get(link)
         movie = parse_movie(response.text)
         sans_list = parse_sans(tag)
-        save_movies(movie)
-        save_sans(sans_list)
+        if sans_list:
+            save_sans(sans_list)
+            save_movies(movie)
 
 
 def extract_link(data):
@@ -52,9 +53,9 @@ def parse_sans(data):
                 if spans[2] is not None:
                     sans_data["price"] = spans[2].text.strip()
                 sans_list.append(sans_data)
-    if len(sans_list) == 0:
-        sans_list.append(sans_data)
-        return sans_list
+    # if len(sans_list) == 0:
+    #     sans_list.append(sans_data)
+    #     return sans_list
     return sans_list
 
 
