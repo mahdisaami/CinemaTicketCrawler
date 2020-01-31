@@ -13,10 +13,10 @@ def parse_html(data):
         link = extract_link(tag)
         response = requests.get(link)
         movie = parse_movie(response.text)
+        save_movies(movie)
         sans_list = parse_sans(tag)
         if sans_list:
             save_sans(sans_list)
-            save_movies(movie)
 
 
 def extract_link(data):
@@ -27,7 +27,7 @@ def extract_link(data):
 
 def parse_sans(data):
     sans_data = dict(date=None, name_saloon=None, price=None, time=None,
-                     is_available=False, url=None)
+                     is_available=False, url=None, movie=None, cinema=None)
     main_div = data.find("div", "showtime--panel")
     divs = main_div.find_all("div", "col--small-12 col--medium-12 "
                                     "col--large-12 col-vertical-align_top "

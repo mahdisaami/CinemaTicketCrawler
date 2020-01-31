@@ -1,7 +1,9 @@
 from peewee import CharField, TimeField, \
-    BooleanField, DateField
+    BooleanField, DateField, ForeignKeyField
 
 from models.base import BaseModel
+from models.cinema import Cinema
+from models.movie import Movie
 
 
 class Sans(BaseModel):
@@ -11,3 +13,5 @@ class Sans(BaseModel):
     time = TimeField(null=True)
     is_available = BooleanField(null=True)
     url = CharField(null=True)
+    movie = ForeignKeyField(Movie, backref="sans", null=True)
+    cinema = ForeignKeyField(Cinema, backref="sans", null=True)
