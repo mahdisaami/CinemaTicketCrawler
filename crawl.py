@@ -14,6 +14,7 @@ def crawl_site(url):
             print("one page crawl")
 
 
+
 def crawl_page(url):
     response = requests.get(url)
     store_data(response)

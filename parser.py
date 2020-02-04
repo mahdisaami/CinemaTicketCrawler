@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 
-
 def parse_html(data):
     soup = BeautifulSoup(data)
     row = soup.select_one(
