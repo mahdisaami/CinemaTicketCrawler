@@ -6,7 +6,5 @@
         at the second you must call the create_table function to connect to your
         database and create tables.
         if you only want to connect to your db you must instead of create_table function
-        call the connect_mysql function.
-###### Url of docs:
-        https://docs.google.com/document/d/1vglnqYzsfDSnvUXul6yYkEiEnmbiTnO-4ky31qp4-Zk/edit?usp=sharing
+        call the connect_mysql function.  [docs](https://docs.google.com/document/d/1vglnqYzsfDSnvUXul6yYkEiEnmbiTnO-4ky31qp4-Zk/edit?usp=sharing)
         
