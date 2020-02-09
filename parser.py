@@ -1,17 +1,22 @@
+import requests
 from bs4 import BeautifulSoup
+
+from mysql import save_cinemas, save_movies, save_sans
+
 
 def parse_html(data):
     soup = BeautifulSoup(data)
-    row = soup.select_one(
-        "body > section > section > div > div > section > section >"
-        " section > section > div"
-    )
-    section_list = row.find_all("section")
-    link_list = list()
-    for section in section_list:
-        link = extract_link(section)
-        link_list.append(link)
-    return link_list
+    cinema = parse_cinema(data)
+    save_cinemas(cinema)
+    td = soup.find_all("td")
+    for tag in td:
+        link = extract_link(tag)
+        response = requests.get(link)
+        movie = parse_movie(response.text)
+        save_movies(movie)
+        sans_list = parse_sans(tag)
+        if sans_list:
+            save_sans(sans_list)
 
 
 def extract_link(data):
@@ -20,7 +25,41 @@ def extract_link(data):
     return complete_link
 
 
-def parse_page(data):
+def parse_sans(data):
+    sans_data = dict(date=None, name_saloon=None, price=None, time=None,
+                     is_available=False, url=None, movie=None, cinema=None)
+    main_div = data.find("div", "showtime--panel")
+    divs = main_div.find_all("div", "col--small-12 col--medium-12 "
+                                    "col--large-12 col-vertical-align_top "
+                                    "showtime--panel_box")
+    sans_list = list()
+    for div in divs:
+        row = div.find("div", "row")
+        sans = row.find_all("div", "col--small-6 col--medium-3 "
+                                   "col-vertical-align_middle")
+        for col in sans:
+            a_tag = col.a
+            if a_tag.attrs["href"] != "#":
+                sans_data["is_available"] = True
+                if div.header is not None:
+                    sans_data["date"] = div.header.text.strip()
+                sans_data["url"] = "https://cinematicket.org" + \
+                                   a_tag.attrs["href"]
+                spans = a_tag.find_all("span")
+                if spans[0] is not None:
+                    sans_data["time"] = spans[0].text.strip()
+                if spans[1] is not None:
+                    sans_data["name_saloon"] = spans[1].text.strip()
+                if spans[2] is not None:
+                    sans_data["price"] = spans[2].text.strip()
+                sans_list.append(sans_data)
+    # if len(sans_list) == 0:
+    #     sans_list.append(sans_data)
+    #     return sans_list
+    return sans_list
+
+
+def parse_movie(data):
     soup = BeautifulSoup(data)
     movie_data = dict(name=None, type_movie=None, time_movie=None,
                       rate=None, vote_numbers=None,
@@ -86,21 +125,23 @@ def parse_page(data):
     if actors is not None:
         movie_data["actors"] = actors.text
 
-    cinemas_tag = soup.find_all("tr")
-    cinemas_list = list()
-    for cinema in cinemas_tag:
-        cinema_data = extract_cinema(cinema)
-        cinemas_list.append(cinema_data)
-    return movie_data, cinemas_list
+    return movie_data
 
 
-def extract_cinema(data):
+def parse_cinema(data):
+    soup = BeautifulSoup(data)
     name_address = dict(name=None, address=None)
-    title_cinema = data.find("div", "movie__title")
-    if title_cinema is not None:
-        name_address['name'] = title_cinema.text
+    title_tag = soup.select_one("body > section > section > section > div "
+                                "> div > section > div > header > div > "
+                                "section > "
+                                "div.relative.state-movie-zIndex > h1")
+    if title_tag is not None:
+        name_address['name'] = title_tag.text
 
-    address_tag = data.p
+    address_tag = soup.select_one("body > section > section > section > div "
+                                  "> div > section > div > header > div > "
+                                  "section > div.relative.state-movie-zIndex "
+                                  "> h5")
     if address_tag is not None:
         name_address["address"] = address_tag.text
     return name_address

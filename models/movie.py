@@ -11,4 +11,3 @@ class Movie(BaseModel):
     date_start = DateField()
     director = CharField()
     actors = CharField()
-
