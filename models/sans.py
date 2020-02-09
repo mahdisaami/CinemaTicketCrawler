@@ -7,11 +7,11 @@ from models.movie import Movie
 
 
 class Sans(BaseModel):
-    date = DateField(null=True)
-    name_saloon = CharField(null=True)
-    price = CharField(null=True)
-    time = TimeField(null=True)
-    is_available = BooleanField(null=True)
-    url = CharField(null=True)
-    movie = ForeignKeyField(Movie, backref="sans", null=True)
-    cinema = ForeignKeyField(Cinema, backref="sans", null=True)
+    date = DateField()
+    name_saloon = CharField()
+    price = CharField()
+    time = TimeField()
+    is_available = BooleanField()
+    url = CharField()
+    movie = ForeignKeyField(Movie, backref="sans")
+    cinema = ForeignKeyField(Cinema, backref="sans")
