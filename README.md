@@ -20,7 +20,7 @@ if you dont know you can use this [link](https://tecadmin.net/install-postgresql
 run this code for clone files from the git
 
 ```
-Git Clone https://gitlab.com/7learn-py-web/step07/cafebazaarcrawler.git
+Git Clone https://gitlab.com/7learn-py-web/step07/cinematicketrobot.git
 ```
 for more Detail you can [click this](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone)
 
