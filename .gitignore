@@ -1,3 +1,4 @@
 .idea/
 *local_*
+crawl.log
 __pycache__/

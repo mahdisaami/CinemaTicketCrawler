@@ -6,6 +6,7 @@ from models.sans import Sans
 
 
 def create_table():
+
     db = connect_mysql()
     CinemaMovie = Cinema.movie.get_through_model()
     db.create_tables([Cinema, Movie,

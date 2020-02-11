@@ -2,6 +2,7 @@ from models.cinema import Cinema
 from models.link import Link
 from models.movie import Movie
 from models.sans import Sans
+from logger import file_logger
 
 cinema_url_list = ['https://cinematicket.org/Location/Detail/?cid=304',
                    'https://cinematicket.org/Location/Detail/?cid=575',
