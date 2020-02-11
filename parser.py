@@ -1,12 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
-
+from logger import file_logger
 from models.cinema import Cinema
 from models.movie import Movie
 from mysql import save_cinemas, save_movies, save_sans, save_cinema_movie
 
 
 def parse_html_and_save(data):
+    file_logger.info('parser is started')
     soup = BeautifulSoup(data)
     td = soup.find_all("td")
     if td:
@@ -23,7 +24,8 @@ def parse_html_and_save(data):
             sans_list = parse_sans(tag)
             if sans_list:
                 save_sans(sans_list, cinema_id, movie_id)
-
+    else:
+        file_logger.error('td is NUll')
 
 def extract_link(data):
     a = data.find("a")
