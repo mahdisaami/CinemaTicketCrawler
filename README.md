@@ -26,3 +26,17 @@ for more Detail you can [click this](https://www.atlassian.com/git/tutorials/set
 
 ### Step 3 (Config your connection)
 
+* create local_config.py in models
+* in local_config.py 
+```
+MY_DATABASE = {'user': 'Yourusername', "password": 'Yourusername', 'host': '127.0.0.1 or Your host'}
+
+```
+
+### Step 4 (Create you Tables)
+
+```
+from create_table import create_table
+create_table()
+```
+
