@@ -7,7 +7,7 @@ from models.movie import Movie
 
 
 class Sans(BaseModel):
-    date = DateField()
+    date = CharField()
     name_saloon = CharField()
     price = CharField()
     time = TimeField()

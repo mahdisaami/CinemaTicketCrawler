@@ -32,8 +32,6 @@ def extract_link(data):
 
 
 def parse_sans(data):
-    sans_data = dict(date=None, name_saloon=None, price=None, time=None,
-                     is_available=False, url=None)
     main_div = data.find("div", "showtime--panel")
     divs = main_div.find_all("div", "col--small-12 col--medium-12 "
                                     "col--large-12 col-vertical-align_top "
@@ -44,6 +42,8 @@ def parse_sans(data):
         sans = row.find_all("div", "col--small-6 col--medium-3 "
                                    "col-vertical-align_middle")
         for col in sans:
+            sans_data = dict(date=None, name_saloon=None, price=None, time=None,
+                             is_available=False, url=None)
             a_tag = col.a
             if a_tag.attrs["href"] != "#":
                 sans_data["is_available"] = True
