@@ -7,3 +7,22 @@ for connecting to your db at the first you must create a dictionary
     database and create tables.
     if you only want to connect to your db you must instead of create_table function
     call the connect_mysql function. [docs](https://docs.google.com/document/d/1vglnqYzsfDSnvUXul6yYkEiEnmbiTnO-4ky31qp4-Zk/edit?usp=sharing)
+    
+## Getting Started
+ for starting crowler you
+ 
+### Step 1 (Create your Database)
+Create a database and you Connection 
+if you dont know you can use this [link](https://tecadmin.net/install-postgresql-server-on-ubuntu/)
+
+### Step 2 (Clone files from git)
+
+run this code for clone files from the git
+
+```
+Git Clone https://gitlab.com/7learn-py-web/step07/cafebazaarcrawler.git
+```
+for more Detail you can [click this](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone)
+
+### Step 3 (Config your connection)
+
