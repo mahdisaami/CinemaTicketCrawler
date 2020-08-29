@@ -9,18 +9,18 @@ for connecting to your db at the first you must create a dictionary
     call the connect_mysql function. [docs](https://docs.google.com/document/d/1vglnqYzsfDSnvUXul6yYkEiEnmbiTnO-4ky31qp4-Zk/edit?usp=sharing)
     
 ## Getting Started
- for starting crawler you
+ for starting crawler
  
 ### Step 1 (Create your Database)
-Create a database and you Connection 
-if you dont know you can use this [link](https://tecadmin.net/install-postgresql-server-on-ubuntu/)
+Create a database and your Connection 
+if you don't know you can use this [link](https://tecadmin.net/install-postgresql-server-on-ubuntu/)
 
 ### Step 2 (Clone files from git)
 
-run this code for clone files from the git
+run this code for clone files from git
 
 ```
-Git Clone https://gitlab.com/7learn-py-web/step07/cinematicketrobot.git
+git clone https://github.com/mahdisaami/CinemaTicketCrawler.git
 ```
 for more Detail you can [click this](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone)
 
@@ -30,13 +30,14 @@ for more Detail you can [click this](https://www.atlassian.com/git/tutorials/set
 * in local_config.py 
 ```
 MY_DATABASE = {'user': 'Yourusername', "password": 'Yourusername', 'host': '127.0.0.1 or Your host'}
-
 ```
 
-### Step 4 (Create you Tables)
+### Step 4 (Create your Tables)
 
 ```
 from create_table import create_table
 create_table()
 ```
-
+###notice
+You must call create_table() for creating you tables.
+ for connecting to your db you must call connect_mysql().
