@@ -39,5 +39,5 @@ from create_table import create_table
 create_table()
 ```
 ### notice
-You must call create_table() for creating you tables.
+You must call create_table() for creating you tables.  
  for connecting to your db you must call connect_mysql().
