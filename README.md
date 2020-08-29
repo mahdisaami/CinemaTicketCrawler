@@ -38,6 +38,6 @@ MY_DATABASE = {'user': 'Yourusername', "password": 'Yourusername', 'host': '127.
 from create_table import create_table
 create_table()
 ```
-###notice
+### notice
 You must call create_table() for creating you tables.
  for connecting to your db you must call connect_mysql().
