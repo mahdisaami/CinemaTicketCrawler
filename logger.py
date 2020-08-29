@@ -16,5 +16,3 @@ c_handler.formatter = f_formatter
 
 file_logger.addHandler(f_handler)
 file_logger.addHandler(c_handler)
-
-

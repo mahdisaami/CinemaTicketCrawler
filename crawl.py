@@ -6,9 +6,10 @@ import requests
 from mysql import load_cinema_links
 from store import store_data
 
+
 def crawl_site(url):
     response = requests.get(url)
-    file_logger.info('requeste for link {} '.format(url))
+    file_logger.info('request for link {} '.format(url))
     store_data(response)
 
 
@@ -20,18 +21,11 @@ def crawl(index, que):
         que.task_done()
 
 
-
-# def crawl_page(url):
-#     response = requests.get(url)
-#     store_data(response)
-
-
 if __name__ == "__main__":
-    # crawl_site('https://cinematicket.org/Location/Detail/?cid=344')
-    file_logger.debug('Crowl Started')
+    file_logger.debug('Crawl Started')
     cinema_links = load_cinema_links()
-    file_logger.debug('links are Crowled')
-    file_logger.debug('Qeue is started')
+    file_logger.debug('links are Crawled')
+    file_logger.debug('Queue is started')
     queue = Queue()
     for link in cinema_links:
         file_logger.info('link {} Add Queue'.format(link.url))
@@ -46,4 +40,3 @@ if __name__ == "__main__":
     for thread in threads_list:
         thread.join()
     file_logger.debug('finish')
-    print("finish")

@@ -6,8 +6,7 @@ def store_data(response, mysql=True):
     if mysql:
         save_data_to_mysql(response)
     else:
-        file_logger.error('sqlconnection failed')
-
+        file_logger.error('sql connection failed')
 
 
 def save_data_to_mysql(response):

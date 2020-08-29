@@ -9,7 +9,7 @@ for connecting to your db at the first you must create a dictionary
     call the connect_mysql function. [docs](https://docs.google.com/document/d/1vglnqYzsfDSnvUXul6yYkEiEnmbiTnO-4ky31qp4-Zk/edit?usp=sharing)
     
 ## Getting Started
- for starting crowler you
+ for starting crawler you
  
 ### Step 1 (Create your Database)
 Create a database and you Connection 

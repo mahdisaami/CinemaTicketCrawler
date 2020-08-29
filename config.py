@@ -3,4 +3,4 @@ from models.local_config import MY_DATABASE
 
 
 def connect_mysql():
-    return MySQLDatabase('cinama', **MY_DATABASE)
+    return MySQLDatabase('CinemaTicketCrawler', **MY_DATABASE)

@@ -27,6 +27,7 @@ def parse_html_and_save(data):
     else:
         file_logger.error('td is NUll')
 
+
 def extract_link(data):
     a = data.find("a")
     complete_link = "https://cinematicket.org" + a.attrs.get("href", "")
